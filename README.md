@@ -13,6 +13,7 @@
   * **DedeUserID__ckMd5**
   * **SESSDATA**
   * **bili_jct**
+  * **注意Cookie的有效期**
 - 替换 **post_comment** 函数中的Cookie
   ```python
   def post_comment(aid, message):
@@ -37,3 +38,4 @@
 - 运行程序
   * 程序会每1秒检测一次UP主是否更新视频
   * 如果想要更改检测频率可以更改main中的time.sleep的值
+  
