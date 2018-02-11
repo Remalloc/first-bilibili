@@ -9,7 +9,7 @@
 - 获取Cookie值 以chrome浏览器为例：
   ![cookie](https://github.com/Remalloc/first-bilibili/blob/master/img/cookie.png)
 * 记录如下Cookie值：
-  * **DedeUserID**
+  * **DedeUserID**
   * **DedeUserID__ckMd5**
   * **SESSDATA**
   * **bili_jct**
