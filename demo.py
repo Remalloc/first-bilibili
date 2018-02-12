@@ -8,22 +8,20 @@ headers = {
 
 
 def get_videos_nums(mid):
-    # 获取视频数
-    space_url = "https://api.bilibili.com/x/space/navnum?mid={}".format(mid)
-    resp = requests.get(space_url, headers=headers)
+    videos_url = "https://space.bilibili.com/ajax/member/" \
+                 "getSubmitVideos?mid={}&pagesize=1&page=1&order=pubdate".format(mid)
+    resp = requests.get(videos_url, headers=headers)
     resp.raise_for_status()
-    resp.encoding = 'utf-8'
     try:
         resp_json = resp.json()
     except ValueError:
         print("json 解析失败：{}".format(resp.text))
     else:
-        return resp_json['data']['video']
+        return resp_json['data']['count']
     return None
 
 
 def get_video_aid_title(mid):
-    # 获取视频av号和标题
     videos_url = "https://space.bilibili.com/ajax/member/" \
                  "getSubmitVideos?mid={}&pagesize=1&page=1&order=pubdate".format(mid)
 
