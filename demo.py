@@ -8,10 +8,11 @@ headers = {
 
 
 def get_videos_nums(mid):
+    # 获取视频数
     videos_url = "https://space.bilibili.com/ajax/member/" \
                  "getSubmitVideos?mid={}&pagesize=1&page=1&order=pubdate".format(mid)
     resp = requests.get(videos_url, headers=headers)
-    resp.raise_for_status()
+
     try:
         resp_json = resp.json()
     except ValueError:
@@ -22,6 +23,7 @@ def get_videos_nums(mid):
 
 
 def get_video_aid_title(mid):
+    # 获取av号和标题
     videos_url = "https://space.bilibili.com/ajax/member/" \
                  "getSubmitVideos?mid={}&pagesize=1&page=1&order=pubdate".format(mid)
 
@@ -40,6 +42,7 @@ def get_video_aid_title(mid):
 
 
 def post_comment(aid, message):
+    # 提交评论
     reply_url = "https://api.bilibili.com/x/v2/reply/add"
     cookie = {
         "DedeUserID": "",  # 用户ID
@@ -87,12 +90,14 @@ def post_comment(aid, message):
 
 if __name__ == '__main__':
     mid = 221648  # UP主ID号
-    message = "第一"  # 留言内容
+    message = "怒抢第一"  # 留言内容（必须在3-1000个字符以内）
+
+    print("执行中")
     try:
         current_videos_num = get_videos_nums(mid)
         target_num = current_videos_num + 1
         while target_num != get_videos_nums(mid):
-            time.sleep(1)
+            time.sleep(1)  # 访问时间间隔（秒）
         aid, title = get_video_aid_title(mid)
         if post_comment(aid, message):
             print("视频{}评论成功".format(title))
